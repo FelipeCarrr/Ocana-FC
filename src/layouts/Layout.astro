@@ -1,0 +1,106 @@
+---
+interface Props {
+	title: string;
+}
+
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocaña Futbol Club</title>
+	<link rel="icon" type="image/png" href="img/logo.png">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<!-- Swiper CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+
+	<style>
+        /* Color personalizado para el fondo del nav */
+        nav {
+            background-color: #218116ff;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="/img/logo.png" alt="Escudo del equipo" class="h-12 w-12 mr-2">
+                <a href="#" class="text-lg font-bold mr-4">Ocaña FC</a>
+                <ul class="hidden md:flex space-x-4">
+                    <li><a href="/" class="hover:text-gray-300">Inicio</a></li>
+                    <li><a href="/equipos" class="hover:text-gray-300">Equipos</a></li>
+                    <li><a href="/noticias" class="hover:text-gray-300">Noticias</a></li>
+                    <li><a href="/galeria" class="hover:text-gray-300">Galeria</a></li>
+                    <li><a href="#" class="hover:text-gray-300">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="flex items-center">
+                <a href="https://www.facebook.com/OcanaFC2021" class="text-gray-300 hover:text-white mr-4"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-gray-300 hover:text-white mr-4"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-300 hover:text-white mr-4"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="bg-gray-800 text-white py-20">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Bienvenido a Ocaña Fútbol Club</h1>
+            <p class="text-lg md:text-xl mb-8">¡Únete a nuestra pasión por el fútbol!</p>
+            <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide">Únete Ahora</a>
+        </div>
+    </section>
+	<!-- Carrusel de imágenes -->
+	<section class="py-8 relative bg-gray-200">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<!-- Imágenes del carrusel -->
+				<div class="swiper-slide"><img src="img/DSC_1974.JPG" alt="Slide 1"></div>
+				<div class="swiper-slide"><img src="img/DSC_1979.JPG" alt="Slide 2"></div>
+				<div class="swiper-slide"><img src="img/DSC_1974.JPG" alt="Slide 3"></div>
+				<div class="swiper-slide"><img src="img/DSC_1979.JPG" alt="Slide 4"></div>
+				<!-- Añade más imágenes aquí según sea necesario -->
+			</div>
+			<!-- Agregar paginación -->
+			<div class="swiper-pagination absolute bottom-0 left-0 w-full flex justify-center"></div>
+		</div>
+	</section>
+
+    <!-- Font Awesome Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+<!-- Swiper JS -->
+<script type="module">
+	import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+  
+	document.addEventListener('DOMContentLoaded', function () {
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3, // Muestra tres imágenes a la vez
+            spaceBetween: 30, // Espacio entre las imágenes
+            loop: true, // Repetir el carrusel
+            autoplay: {
+                delay: 5000, // Intervalo de tiempo en milisegundos entre cada diapositiva
+                disableOnInteraction: false, // Permite que el carrusel siga avanzando automáticamente incluso si el usuario interactúa con él
+            },
+            pagination: {
+                el: '.swiper-pagination', // Selector de la paginación
+                clickable: true, // Permite hacer clic en los puntos de paginación para navegar
+            },
+        });
+    });
+  </script>
+
+
+
+</body>
+</html>
+

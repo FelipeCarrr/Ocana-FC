@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+	
+	</main>
+</Layout>
+
+<html>
+	<!-- Resumen de Secciones -->
+<section class="py-16">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-8">Acerca de</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Resumen de Equipos -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img src="img/prueba.jpg" alt="Imagen 1" class="w-full">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Equipos</h3>
+                    <p>Conoce más sobre nuestros equipos y jugadores.</p>
+                    <a href="/equipos" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block">Ver más</a>
+                </div>
+            </div>
+            <!-- Resumen de Noticias -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img src="img/noticias logo.png" alt="Imagen 2" class="w-full">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Noticias</h3>
+                    <p>Lee las últimas noticias y actualizaciones.</p>
+                    <a href="/noticias" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block">Ver más</a>
+                </div>
+            </div>
+            <!-- Resumen de Galería -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img src="img/Galeria.jpg" alt="Imagen 3" class="w-full">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Galería</h3>
+                    <p>Explora nuestra galería de imágenes.</p>
+                    <a href="/galeria" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Ocaña FC. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</html>
+
+
