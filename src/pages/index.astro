@@ -1,23 +1,22 @@
 ---
+import Links from "../components/MyCarousel";
 import Layout from "../layouts/Layout.astro";
 ---
-
-<Layout title="Welcome to Astro.">
-  <main></main>
-</Layout>
-
-<html>
-  <style>
-    a {
-      background-color: #218116ff;
-    }
-  </style>
-  <!-- Resumen de Secciones -->
-  <section class="py-16">
+<Layout title="Ocaña FC">
+  <main>
+    <section class="bg-gray-800 text-white py-20">
+      <div class="container mx-auto text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4">Bienvenido a Ocaña FC</h1>
+          <p class="text-lg md:text-xl mb-8">¡Únete a nuestra pasión por el fútbol!</p>
+          <a href="#" class="bg-primary hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide">Únete Ahora</a>
+      </div>
+    </section>
+    
+  
+    <section class="py-16">
     <div class="container mx-auto">
       <h2 class="text-3xl font-bold text-center mb-8">Acerca de</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Resumen de Equipos -->
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
           <img src="img/prueba.jpg" alt="Imagen 1" class="w-full" />
           <div class="p-6">
@@ -25,7 +24,7 @@ import Layout from "../layouts/Layout.astro";
             <p>Conoce más sobre nuestros equipos y jugadores.</p>
             <a
               href="/equipos"
-              class="hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
+              class="bg-primary hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
               >Ver más</a
             >
           </div>
@@ -38,7 +37,7 @@ import Layout from "../layouts/Layout.astro";
             <p>Lee las últimas noticias y actualizaciones.</p>
             <a
               href="/noticias"
-              class="hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
+              class="bg-primary hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
               >Ver más</a
             >
           </div>
@@ -51,7 +50,7 @@ import Layout from "../layouts/Layout.astro";
             <p>Explora nuestra galería de imágenes.</p>
             <a
               href="/galeria"
-              class="hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
+              class="bg-primary hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
               >Ver más</a
             >
           </div>
@@ -59,16 +58,11 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
   </section>
-
   <!-- Footer -->
   <footer class="bg-gray-900 text-white py-8">
     <div class="container mx-auto text-center">
       <p>&copy; 2024 Ocaña FC. Todos los derechos reservados.</p>
     </div>
   </footer>
-
-  <!-- Font Awesome Script -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
-  ></script>
-</html>
+  </main>
+</Layout>

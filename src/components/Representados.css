@@ -1,0 +1,52 @@
+.card {
+  width: 300px; /* Ancho fijo para las cartas */
+  height: 400px; 
+  perspective: 1000px;
+  margin-right: 20px; /* Espacio entre las cartas */
+}
+
+.card:last-child {
+  margin-right: 0; /* Elimina el margen derecho del último elemento para evitar desbordamientos */
+}
+
+.card-inner {
+  position: relative; 
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  background-color: #f3f4f6;
+}
+
+.card-back {
+  background-color: #000000;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cards-container {
+  display: flex;
+  justify-content: flex-start; /* Ajusta según la alineación deseada */
+  align-items: flex-start; /* Ajusta según la alineación deseada */
+  flex-wrap: wrap; /* Permite que las cartas se envuelvan en líneas adicionales si no caben en una sola fila */
+}
