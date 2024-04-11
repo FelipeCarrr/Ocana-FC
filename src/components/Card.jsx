@@ -1,12 +1,12 @@
 import './Representados.css';
 
-const CardComponent = ({name, position, team, birthDate }) => {
+const CardComponent = ({name, position, team, birthDate, imageUrl }) => {
   return (
     <div className="card">
     <div className="card-inner">
       <div className="card-front card-front-style"> 
         <img
-          src="img/Convocatoria Cat Sub20.png"
+          src={imageUrl}
           alt={`Representado ${name}`}
           className="w-full h-full object-cover"
         />
