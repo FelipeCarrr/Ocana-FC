@@ -1,43 +1,15 @@
 ---
+import NewsClient from "../components/NewsClient/NewsClient";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Noticias | Ocaña Futbol Club">
-    <main>
-        <section class="bg-gray-100 py-16">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-8">Últimas Noticias</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Noticia 1 -->
-                    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                        <img src="img/image1.jpg" alt="Noticia 1" class="w-full h-64 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Convocatoria Sub 20</h3>
-                            <p class="text-gray-700">El día 29 de Febrero se llevó a cabo la convocatoria para la Categoría Sub 20 de Ocaña Futbol Club.</p>
-                            <a href="https://www.facebook.com/OcanaFC2021/posts/pfbid02UgGZVzKvwHuKqZyhqBiXQdgrPwH43eQ2XYuBL2giy3x8pAJdgtJmnFQ9maHMbJutl" class="bg-primary block text-center hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4">Leer más</a>
-                        </div>
-                    </div>
-                    <!-- Noticia 2 -->
-                    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                        <img src="img/image1.jpg" alt="Noticia 2" class="w-full h-64 object-contain">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Título de la Noticia 2</h3>
-                            <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel magna eget odio mollis venenatis. Ut varius lorem vel ultricies dictum.</p>
-                            <a href="representados" class="bg-primary block text-center hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4">Leer más</a>
-                        </div>
-                    </div>
-                    <!-- Noticia 3 -->
-                    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                        <img src="img/DSC_1993.JPG" alt="Noticia 3" class="w-full h-64 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Título de la Noticia 3</h3>
-                            <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel magna eget odio mollis venenatis. Ut varius lorem vel ultricies dictum.</p>
-                            <a href="#" class="bg-primary block text-center hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4">Leer más</a>
-                        </div>
-                    </div>
-                    <!-- Agrega más noticias según sea necesario -->  
-                </div>
-            </div>
-        </section>
-    </main>
+  <main>
+    <section class="bg-gray-100 py-16">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-8">Últimas Noticias</h2>
+        <NewsClient client:load/>
+      </div>
+    </section>
+  </main>
 </Layout>

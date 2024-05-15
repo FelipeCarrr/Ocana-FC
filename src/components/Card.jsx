@@ -1,4 +1,4 @@
-import './Representados.css';
+import './css/Representados.css';
 
 const CardComponent = ({name, position, team, birthDate, imageUrl }) => {
   return (
@@ -7,7 +7,7 @@ const CardComponent = ({name, position, team, birthDate, imageUrl }) => {
       <div className="card-front card-front-style"> 
         <img
           src={imageUrl}
-          alt={`Representado ${name}`}
+          alt={`Jugador ${name}`}
           className="w-full h-full object-cover"
         />
       </div>
