@@ -9,6 +9,8 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  query,
+  orderBy
 } from "firebase/firestore";
 import { deletedFrontPage } from "./Storage.js";
 
@@ -27,6 +29,7 @@ export const saveNews = async (
     URL: URL,
     frontPage: frontPage,
     frontPageRef: frontPageRef,
+    createdAt: new Date()
   });
 };
 
@@ -54,7 +57,8 @@ export const deleteNews = async (document) => {
 };
 
 export const getAllNoticias = async () => {
-  const querySnapshot = await getDocs(collection(db, "noticia"));
+  const q = query(collection(db, "noticia"), orderBy("createdAt", "desc"));
+  const querySnapshot = await getDocs(q);
   return querySnapshot;
 };
 

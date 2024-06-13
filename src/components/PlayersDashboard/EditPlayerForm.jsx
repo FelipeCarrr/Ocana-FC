@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { updateNews } from "../../firebase/Firestore";
+import { updatedFrontPage } from "../../firebase/StoragePlayers";
+import { updatePlayer } from "../../firebase/PlayersFirestore";
 import { useStore } from "../../utils/store";
-import { updatedFrontPage } from "../../firebase/Storage";
 
-const EditNewsForm = ({ onClose, news, consultAllNews, setAlert }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [url, setURL] = useState("");
+const EditPlayerForm = ({ onClose, player, consultAllPlayers, setAlert }) => {
+  const [jugador, setJugador] = useState("");
+  const [posicion, setPosicion] = useState("");
+  const [equipo, setEquipo] = useState("");
+  const [dateBirth, setDateBirth] = useState("");
   const [image, setImage] = useState("");
   const [imageFile, setImageFile] = useState("");
   const [edit, setEdit] = useState(false);
@@ -17,13 +18,13 @@ const EditNewsForm = ({ onClose, news, consultAllNews, setAlert }) => {
       state.ChangeLoadingItem,
     ]
   );
-
   const valuesDefault = () => {
-    if (news) {
-      setTitle(news.data().title);
-      setDescription(news.data().description);
-      setURL(news.data().URL);
-      setImage(news.data().frontPage);
+    if (player) {
+      setJugador(player.data().jugador);
+      setPosicion(player.data().posicion);
+      setEquipo(player.data().equipo);
+      setDateBirth(player.data().dateBirth);
+      setImage(player.data().frontPage);
       setImageFile("");
     }
     setEdit(false);
@@ -31,22 +32,26 @@ const EditNewsForm = ({ onClose, news, consultAllNews, setAlert }) => {
 
   useEffect(() => {
     valuesDefault();
-  }, [news]);
+  }, [player]);
 
-  const handleChangeTitle = (e) => {
-    setTitle(e.target.value);
+  const handleChangeJugador = (e) => {
+    setJugador(e.target.value);
   };
 
-  const handleChangeDescription = (e) => {
-    setDescription(e.target.value);
+  const handleChangePosicion = (e) => {
+    setPosicion(e.target.value);
   };
 
-  const handleChangeUrl = (e) => {
-    setURL(e.target.value);
+  const handleChangeEquipo = (e) => {
+    setEquipo(e.target.value);
+  };
+
+  const handleChangeDateBirth = (e) => {
+    setDateBirth(e.target.value);
   };
 
   const handleChangeImage = (e) => {
-    if (e.target.files.length > 0) {
+    if (e.target.files.lenght > 0) {
       const selectedImage = URL.createObjectURL(e.target.files[0]);
       setImage(selectedImage);
       setImageFile(e.target.files[0]);
@@ -55,38 +60,37 @@ const EditNewsForm = ({ onClose, news, consultAllNews, setAlert }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const frontPagePromise = imageFile
-        ? await updatedFrontPage(imageFile, news.data().frontPageRef)
+        ? await updatedFrontPage(imageFile, player.data().frontPageRef)
         : Promise.resolve({
-            downloadURL: news.data().frontPage,
-            refFile: news.data().frontPageRef,
+            downloadURL: player.data().frontPage,
+            refFile: player.data().frontPageRef,
           });
       ChangeLoadingItem("");
 
       const [frontPageURL] = await Promise.all([frontPagePromise]);
 
-      await updateNews(
-        news.id,
-        title,
-        description,
-        url,
+      await updatePlayer(
+        player.id,
+        jugador,
+        posicion,
+        equipo,
+        dateBirth,
         frontPageURL.downloadURL,
         frontPageURL.refFile
       );
-
       ChangeLoadingValue(0);
       ChangeLoading(false);
-      consultAllNews();
+      consultAllPlayers();
       setAlert({
-        message: "Noticia actualizada exitosamente.",
+        message: "Jugador actualizado correctamente.",
         type: "success",
       });
       onClose();
     } catch (error) {
-      console.error("Error al actualizar la noticia:", error);
-      setAlert({ message: "Error al actualizar la noticia.", type: "error" });
+      console.log("Error al actualizar el Jugador", error);
+      setAlert({ message: "Error al actualizar el Jugador.", type: "error" });
     }
   };
 
@@ -94,48 +98,64 @@ const EditNewsForm = ({ onClose, news, consultAllNews, setAlert }) => {
     <form onSubmit={handleSubmit}>
       <div className="mb-4">
         <label
-          htmlFor="title"
+          htmlFor="jugador"
           className="block text-gray-700 text-sm font-bold mb-2"
         >
-          Título
+          Jugador
         </label>
         <input
-          id="title"
+          id="jugador"
           type="text"
-          placeholder="Ingrese el título de la noticia"
-          value={title}
-          onChange={handleChangeTitle}
+          placeholder="Ingrese el nombre del Jugador"
+          value={jugador}
+          onChange={handleChangeJugador}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
       <div className="mb-4">
         <label
-          htmlFor="description"
+          htmlFor="posicion"
           className="block text-gray-700 text-sm font-bold mb-2"
         >
-          Descripción
+          Posición
         </label>
-        <textarea
-          id="description"
-          placeholder="Descripción de la Noticia"
-          value={description}
-          onChange={handleChangeDescription}
+        <input
+          id="posicion"
+          placeholder="Posición del Jugador"
+          value={posicion}
+          onChange={handleChangePosicion}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
       <div className="mb-4">
         <label
-          htmlFor="url"
+          htmlFor="equipo"
           className="block text-gray-700 text-sm font-bold mb-2"
         >
-          URL
+          Equipo
         </label>
         <input
           type="text"
-          id="url"
-          placeholder="URL de la Noticia"
-          value={url}
-          onChange={handleChangeUrl}
+          id="equipo"
+          placeholder="Equipo del Jugador"
+          value={equipo}
+          onChange={handleChangeEquipo}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div>
+      <div className="mb-4">
+        <label
+          htmlFor="dateBirth"
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
+          Fecha de Nacimiento
+        </label>
+        <input
+          type="text"
+          id="dateBirth"
+          placeholder="Fecha de Nacimiento"
+          value={dateBirth}
+          onChange={handleChangeDateBirth}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
@@ -172,4 +192,4 @@ const EditNewsForm = ({ onClose, news, consultAllNews, setAlert }) => {
   );
 };
 
-export default EditNewsForm;
+export default EditPlayerForm;

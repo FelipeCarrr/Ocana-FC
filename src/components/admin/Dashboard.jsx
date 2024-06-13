@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Sidebar from "../DashboardComponents/Sidebar";
 import AllNewsDashboard from "../NoticiasDashboard/AllNewsDashboard";
+import AllPlayersDashboard from "../PlayersDashboard/AllPlayersDashboard";
+import AllGaleryDashboard from "../GalleryDashboard/AllGalleryDashboard";
 
 const Dashboard = () => {
   const [selectedSection, setSelectedSection] = useState("news");
@@ -14,9 +16,9 @@ const Dashboard = () => {
       case "news":
         return <AllNewsDashboard />;
       case "players20":
-        return <div>Registrar Jugadores Sub 20</div>;
-      case "players17":
-        return <div>Registrar Jugadores Sub 17</div>;
+        return <AllPlayersDashboard/>;
+      case "gallery":
+        return <AllGaleryDashboard/>;
       case "staff":
         return <div>Registar Staff</div>;
       default:

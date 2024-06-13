@@ -41,7 +41,7 @@ const Sidebar = ({ onSelect }) => {
           <li>
             <a
               href="#"
-              onClick={() => onSelect('players17')}
+              onClick={() => onSelect('gallery')}
               className="flex items-center text-white text-lg font-semibold hover:text-gray-400 mt-4"
             >
               <span className="mr-2">
@@ -49,7 +49,7 @@ const Sidebar = ({ onSelect }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </span>
-              Jugadores Sub 17
+              Galeria
             </a>
           </li>
           <li>

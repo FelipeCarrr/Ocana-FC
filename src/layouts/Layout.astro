@@ -14,6 +14,46 @@ const {title} = Astro.props;
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <style>
+        .menu-hidden {
+            transform: translateX(100%);
+        }
+
+        .menu-visible {
+            transform: translateX(0);
+        }
+
+        .transition-transform {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 8px 16px;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .submenu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .submenu-visible {
+            display: block;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100">
@@ -30,6 +70,15 @@ const {title} = Astro.props;
                     <li><a href="/contacto" class="hover:text-gray-300">Contacto</a></li>
                     <li><a href="/staff" class="hover:text-gray-300">Staff</a></li>
                     <li><a href="/nosotros" class="hover:text-gray-300">Quienes Somos</a></li>
+                    <!-- Normatividad con Submenú -->
+                    <li class="relative">
+                        <a href="#" class="hover:text-gray-300" id="normatividadButton">Normatividad</a>
+                        <ul class="submenu absolute bg-white text-black shadow-lg p-2" id="normatividadSubmenu">
+                            <li><a href="/calendario" class="hover:bg-gray-200">Cumpleaños</a></li>
+                            <li><a href="/normatividad/item2" class="hover:bg-gray-200">Item 2</a></li>
+                            <li><a href="/normatividad/item3" class="hover:bg-gray-200">Item 3</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="flex items-center">
@@ -43,7 +92,7 @@ const {title} = Astro.props;
             </div>
         </div>
     </nav>
-    <ul id="menuListMobile" class="fixed top-0 right-full w-64 bg-white shadow-lg p-4 transform transition-transform duration-300">
+    <ul id="menuListMobile" class="fixed top-0 right-0 w-64 bg-white shadow-lg p-4 transform transition-transform duration-300 menu-hidden">
         <li><a href="/" class="block py-2">Inicio</a></li>
         <li><a href="/equipos" class="block py-2">Equipos</a></li>
         <li><a href="/noticias" class="block py-2">Noticias</a></li>
@@ -51,17 +100,75 @@ const {title} = Astro.props;
         <li><a href="/contacto" class="block py-2">Contacto</a></li>
         <li><a href="/staff" class="block py-2">Staff</a></li>
         <li><a href="/nosotros" class="block py-2">Quienes Somos</a></li>
+        <li class="relative">
+            <a href="#" class="block py-2" id="normatividadButtonMobile">Normatividad</a>
+            <ul class="submenu bg-white text-black shadow-lg p-2" id="normatividadSubmenuMobile">
+                <li><a href="/normatividad/item1" class="hover:bg-gray-200">Item 1</a></li>
+                <li><a href="/normatividad/item2" class="hover:bg-gray-200">Item 2</a></li>
+                <li><a href="/normatividad/item3" class="hover:bg-gray-200">Item 3</a></li>
+            </ul>
+        </li>
     </ul>
     <slot />
+    <script>
+        // JavaScript para manejar el menú y submenú
+        document.getElementById('menuButton').addEventListener('click', function (event) {
+            event.stopPropagation();
+            const menuListMobile = document.getElementById('menuListMobile');
+            if (menuListMobile.classList.contains('menu-hidden')) {
+                menuListMobile.classList.remove('menu-hidden');
+                menuListMobile.classList.add('menu-visible');
+            } else {
+                menuListMobile.classList.remove('menu-visible');
+                menuListMobile.classList.add('menu-hidden');
+            }
+        });
+
+        // Cerrar el menú si se hace clic fuera de él
+        document.addEventListener('click', function (event) {
+            const menuListMobile = document.getElementById('menuListMobile');
+            const menuButton = document.getElementById('menuButton');
+            const target = event.target as Node;
+            if (!menuListMobile.contains(target) && !menuButton.contains(target)) {
+                if (menuListMobile.classList.contains('menu-visible')) {
+                    menuListMobile.classList.remove('menu-visible');
+                    menuListMobile.classList.add('menu-hidden');
+                }
+            }
+        });
+
+        // Manejo del submenú Normatividad en versión de escritorio
+        const normatividadButton = document.getElementById('normatividadButton');
+        const normatividadSubmenu = document.getElementById('normatividadSubmenu');
+        normatividadButton.addEventListener('click', function (event) {
+            event.stopPropagation();
+            normatividadSubmenu.classList.toggle('submenu-visible');
+        });
+
+        // Cerrar el submenú si se hace clic fuera de él
+        document.addEventListener('click', function (event) {
+            const target = event.target as Node;
+            if (!normatividadButton.contains(target)) {
+                normatividadSubmenu.classList.remove('submenu-visible');
+            }
+        });
+
+        // Manejo del submenú Normatividad en versión móvil
+        const normatividadButtonMobile = document.getElementById('normatividadButtonMobile');
+        const normatividadSubmenuMobile = document.getElementById('normatividadSubmenuMobile');
+        normatividadButtonMobile.addEventListener('click', function (event) {
+            event.stopPropagation();
+            normatividadSubmenuMobile.classList.toggle('submenu-visible');
+        });
+
+        // Cerrar el submenú si se hace clic fuera de él en versión móvil
+        document.addEventListener('click', function (event) {
+            const target = event.target as Node;
+            if (!normatividadButtonMobile.contains(target)) {
+                normatividadSubmenuMobile.classList.remove('submenu-visible');
+            }
+        });
+    </script>
 </body>
-<!-- JavaScript para manejar el menú -->
-<script>
-    // JavaScript para cambiar entre el navbar y el menú desplegable
-    document.getElementById('menuButton').addEventListener('click', function () {
-        const menuListMobile = document.getElementById('menuListMobile');
-        menuListMobile.classList.toggle('right-full'); // Muestra u oculta el menú desplegable
-    });
-</script>
 
 </html>
-

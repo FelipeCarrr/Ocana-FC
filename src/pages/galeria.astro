@@ -1,4 +1,5 @@
 ---
+import GalleryClient from "../components/GalleryClient/GalleryClient";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -7,38 +8,7 @@ import Layout from "../layouts/Layout.astro";
     <section class="py-16">
       <div class="container mx-auto">
         <h2 class="text-3xl font-bold text-center mb-8">Galería</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Imagen 1 -->
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src="img/DSC_1977.JPG" alt="Imagen 1" class="w-full" />
-          </div>
-          <!-- Imagen 2 -->
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src="img/DSC_1979.JPG" alt="Imagen 2" class="w-full" />
-          </div>
-          <!-- Imagen 3 -->
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src="img/DSC_2124.JPG" alt="Imagen 3" class="w-full" />
-          </div>
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src="img/DSC_1502.JPG" alt="Imagen 3" class="w-full" />
-          </div>
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src="img/DSC_2144.JPG" alt="Imagen 3" class="w-full" />
-          </div>
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src="img/DSC_2072.JPG" alt="Imagen 3" class="w-full" />
-          </div>
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src="img/DSC_2151.JPG" alt="Imagen 3" class="w-full" />
-          </div>
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src="img/DSC_2028.JPG" alt="Imagen 3" class="w-full" />
-          </div>
-          <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src="img/DSC_2020.JPG" alt="Imagen 3" class="w-full" />
-          </div>
-        </div>
+        <GalleryClient client:load/>
       </div>
     </section>
   </main>
