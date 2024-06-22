@@ -3,6 +3,9 @@ import Sidebar from "../DashboardComponents/Sidebar";
 import AllNewsDashboard from "../NoticiasDashboard/AllNewsDashboard";
 import AllPlayersDashboard from "../PlayersDashboard/AllPlayersDashboard";
 import AllGaleryDashboard from "../GalleryDashboard/AllGalleryDashboard";
+import AllStaffDashboard from "../StaffDashboard/AllStaffDashboard";
+import AllEventsDashboard from "../EventsDashboard/AllEventsDashboard";
+import LiveStreamDashboard from "../StreamDashBoard/LiveStreamDashboard";
 
 const Dashboard = () => {
   const [selectedSection, setSelectedSection] = useState("news");
@@ -16,11 +19,15 @@ const Dashboard = () => {
       case "news":
         return <AllNewsDashboard />;
       case "players20":
-        return <AllPlayersDashboard/>;
+        return <AllPlayersDashboard />;
       case "gallery":
-        return <AllGaleryDashboard/>;
+        return <AllGaleryDashboard />;
       case "staff":
-        return <div>Registar Staff</div>;
+        return <AllStaffDashboard />;
+      case "events":
+        return <AllEventsDashboard />;
+      case "stream":
+        return <LiveStreamDashboard />;
       default:
         return <AllNewsDashboard />;
     }

@@ -1,0 +1,41 @@
+.custom-modal {
+  max-width: 90%; /* Ajusta el ancho máximo según sea necesario */
+  max-height: 90%; /* Ajusta la altura máxima según sea necesario */
+  overflow: auto; /* Añade scroll si es necesario */
+}
+
+.custom-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo del overlay */
+}
+
+.day {
+  position: relative;
+}
+
+.day .event-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #218116ff;
+  animation: palpitacion 1s infinite alternate; 
+}
+
+.day:hover {
+  border: 2px solid #218116ff;
+}
+
+.day.has-events:hover .event-dot {
+  opacity: 1;
+}
+
+@keyframes palpitacion {
+  0% {
+      transform: scale(0.5);
+  }
+  100% {
+      transform: scale(1.5);
+  }
+}

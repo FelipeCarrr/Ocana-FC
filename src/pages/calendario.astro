@@ -1,0 +1,16 @@
+---
+import CalendarComponent from "../components/Calendario/CalendarComponent";
+import Layout from "../layouts/Layout.astro";
+
+---
+
+<Layout title="Calendario | Ocaña FC">
+    <main class="bg-gray-100 py-8">
+      <section class="container mx-auto p-8 bg-white rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold text-center mb-8 text-black-600">Fecha de Cumpleaños</h2>
+        <div id="root">
+          <CalendarComponent client:load/>
+        </div>
+      </section>
+    </main>
+  </Layout>

@@ -1,6 +1,7 @@
 ---
 
 import MyCarousel from "../components/MyCarousel.astro";
+import StreamClient from "../components/StreamClient/StreamClient";
 import Layout from "../layouts/Layout.astro";
 ---
 <Layout title="Ocaña FC">
@@ -13,6 +14,7 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </section>
     <MyCarousel />
+    <StreamClient client:load/>
     <section class="py-16">
     <div class="container mx-auto">
       <h2 class="text-3xl font-bold text-center mb-8">Acerca de</h2>
