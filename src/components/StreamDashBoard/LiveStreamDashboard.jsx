@@ -104,7 +104,7 @@ const LiveStreamDashboard = () => {
                 <img
                   src={streamData.frontPage}
                   alt={`img-${streamData.title}`}
-                  className="w-full h-48 object-cover"
+                  className="w-full"
                   onClick={() => window.open(streamData.URL, "_blank")}
                 />
                 <div className="p-6">
