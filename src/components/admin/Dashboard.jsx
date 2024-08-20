@@ -6,6 +6,8 @@ import AllGaleryDashboard from "../GalleryDashboard/AllGalleryDashboard";
 import AllStaffDashboard from "../StaffDashboard/AllStaffDashboard";
 import AllEventsDashboard from "../EventsDashboard/AllEventsDashboard";
 import LiveStreamDashboard from "../StreamDashBoard/LiveStreamDashboard";
+import AllCircularsDashboard from "../CircularsDashboard/AllCircularsDashboard";
+
 
 const Dashboard = () => {
   const [selectedSection, setSelectedSection] = useState("news");
@@ -28,6 +30,8 @@ const Dashboard = () => {
         return <AllEventsDashboard />;
       case "stream":
         return <LiveStreamDashboard />;
+      case "circulars":
+        return <AllCircularsDashboard />;
       default:
         return <AllNewsDashboard />;
     }

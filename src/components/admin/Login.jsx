@@ -13,7 +13,7 @@ const LoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      Login(email, password);
+      await Login(email, password);
     } catch (error) {
       setErrorMessage(error.message);
     }

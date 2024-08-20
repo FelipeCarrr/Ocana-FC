@@ -76,12 +76,7 @@ const StreamClient = () => {
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
       /> */}
       <div className="flex flex-wrap -m-2">
-        {streams.length > 0 ? (
-          
-          streams
-        ) : (
-          <p className="text-gray-700 text-center w-full">No hay En Vivos disponibles.</p>
-        )}
+        {streams}
       </div>
     </div>
   );

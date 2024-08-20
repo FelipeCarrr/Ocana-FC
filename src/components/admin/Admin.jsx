@@ -11,7 +11,7 @@ const Admin = () => {
 
   useEffect(()=> {
     validateSession();
-  }, []);
+  }, [logged]);
   if (logged){
     return <Dashboard />
   } else {

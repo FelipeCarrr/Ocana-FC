@@ -86,7 +86,7 @@ const { title } = Astro.props;
                         <a href="#" class="hover:text-gray-300" id="normatividadButton">Normatividad</a>
                         <ul class="submenu absolute bg-white text-black shadow-lg p-2" id="normatividadSubmenu">
                             <li><a href="/calendario" class="hover:bg-gray-200">Cumpleaños</a></li>
-                            <li><a href="/normatividad/item2" class="hover:bg-gray-200">Item 2</a></li>
+                            <li><a href="/circulares" class="hover:bg-gray-200">Circulares</a></li>
                             <li><a href="/normatividad/item3" class="hover:bg-gray-200">Item 3</a></li>
                         </ul>
                     </li>
@@ -105,7 +105,7 @@ const { title } = Astro.props;
             </div>
         </div>
     </nav>
-    <ul id="menuListMobile" class="fixed top-0 right-0 w-64 bg-white shadow-lg p-4 transform transition-transform duration-300 menu-hidden">
+    <ul id="menuListMobile" class="fixed top-0 right-0 w-64 bg-white shadow-lg p-4 transform transition-transform duration-300 menu-hidden z-50">
         <li><a href="/" class="block py-2">Inicio</a></li>
         <li><a href="/equipos" class="block py-2">Equipos</a></li>
         <li><a href="/noticias" class="block py-2">Noticias</a></li>
@@ -117,7 +117,7 @@ const { title } = Astro.props;
             <a href="#" class="block py-2" id="normatividadButtonMobile">Normatividad</a>
             <ul class="submenu bg-white text-black shadow-lg p-2" id="normatividadSubmenuMobile">
                 <li><a href="/calendario" class="hover:bg-gray-200">Cumpleaños</a></li>
-                <li><a href="/normatividad/item2" class="hover:bg-gray-200">Item 2</a></li>
+                <li><a href="/circulares" class="hover:bg-gray-200">Circulares</a></li>
                 <li><a href="/normatividad/item3" class="hover:bg-gray-200">Item 3</a></li>
                 <!-- Aquí puedes añadir más items si es necesario -->
             </ul>
