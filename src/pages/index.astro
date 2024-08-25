@@ -1,70 +1,210 @@
 ---
-
 import MyCarousel from "../components/MyCarousel.astro";
 import StreamClient from "../components/StreamClient/StreamClient";
 import Layout from "../layouts/Layout.astro";
 ---
 <Layout title="Ocaña FC">
+  <style>
+    /* Tipografía y Colores */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .text-primary {
+      color: #1ABC9C;
+    }
+
+    /* Sección de Video con Superposición */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+    .hero-section iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    /* Botón Únete Ahora */
+    .join-button {
+      color: white;
+      font-size: 1.25rem;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+      z-index: 2;
+    }
+    .join-button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Sección Informativa */
+    .info-section img:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+    .info-section .shadow-md {
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    .info-section .shadow-md:hover {
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    footer a {
+      color: #1ABC9C;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #16A085;
+    }
+
+    /* Floating Action Button (FAB) */
+    .fab-whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      z-index: 1000;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+    }
+    .fab-whatsapp:hover {
+      background-color: #20B857;
+    }
+
+    .hero-section {
+  position: relative;
+  overflow: hidden;
+  height: 100vh; /* Ajusta según tu necesidad */
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Ajusta el color y la opacidad del overlay */
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+}
+
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+  </style>
+
   <main>
-    <section class="bg-gray-800 text-white py-20">
-      <div class="container mx-auto text-center">
+    <!-- Sección de Bienvenida con Video de YouTube -->
+    <section class="hero-section relative">
+      <div class="hero-overlay absolute inset-0 bg-black opacity-50"></div>
+      <div class="container z-10 relative">
           <h1 class="text-4xl md:text-6xl font-bold mb-4">Bienvenido a Ocaña FC</h1>
           <p class="text-lg md:text-xl mb-8">¡Únete a nuestra pasión por el fútbol!</p>
-          <a href="#" class="bg-primary hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide">Únete Ahora</a>
+          <a href="#" class="join-button bg-primary hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide">Únete Ahora</a>
+      </div>
+      <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop>
+        <source src="/video/63447-506377734.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de videos.
+      </video>
+    </section>
+    
+
+    <!-- Carousel y StreamClient -->
+    <MyCarousel />
+    <StreamClient client:load />
+
+    <!-- Sección Informativa -->
+    <section class="py-16 info-section">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-8">Acerca de</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <img src="img/prueba.jpg" alt="Imagen 1" class="w-full" />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Equipos</h3>
+              <p>Conoce más sobre nuestros equipos y jugadores.</p>
+              <a
+                href="/equipos"
+                class="bg-primary hover:bg-green-900 text-white font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
+                >Ver más</a>
+            </div>
+          </div>
+          <!-- Resumen de Noticias -->
+          <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <img src="img/noticias logo.png" alt="Imagen 2" class="w-full" />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Noticias</h3>
+              <p>Lee las últimas noticias y actualizaciones.</p>
+              <a
+                href="/noticias"
+                class="bg-primary hover:bg-green-900 text-white font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
+                >Ver más</a>
+            </div>
+          </div>
+          <!-- Resumen de Galería -->
+          <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <img src="img/Galeria.jpg" alt="Imagen 3" class="w-full" />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Galería</h3>
+              <p>Explora nuestra galería de imágenes.</p>
+              <a
+                href="/galeria"
+                class="bg-primary hover:bg-green-900 text-white font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
+                >Ver más</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <MyCarousel />
-    <StreamClient client:load/>
-    <section class="py-16">
-    <div class="container mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-8">Acerca de</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-          <img src="img/prueba.jpg" alt="Imagen 1" class="w-full" />
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Equipos</h3>
-            <p>Conoce más sobre nuestros equipos y jugadores.</p>
-            <a
-              href="/equipos"
-              class="bg-primary hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
-              >Ver más</a
-            >
-          </div>
-        </div>
-        <!-- Resumen de Noticias -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-          <img src="img/noticias logo.png" alt="Imagen 2" class="w-full" />
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Noticias</h3>
-            <p>Lee las últimas noticias y actualizaciones.</p>
-            <a
-              href="/noticias"
-              class="bg-primary hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
-              >Ver más</a
-            >
-          </div>
-        </div>
-        <!-- Resumen de Galería -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-          <img src="img/Galeria.jpg" alt="Imagen 3" class="w-full" />
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Galería</h3>
-            <p>Explora nuestra galería de imágenes.</p>
-            <a
-              href="/galeria"
-              class="bg-primary hover:bg-green-900 text-gray-900 font-bold py-2 px-6 rounded-full uppercase tracking-wide mt-4 inline-block"
-              >Ver más</a
-            >
-          </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+      <div class="container mx-auto text-center">
+        <p>&copy; 2024 Ocaña FC. Todos los derechos reservados.</p>
+        <div>
+          <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/" target="_blank">Instagram</a>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-8">
-    <div class="container mx-auto text-center">
-      <p>&copy; 2024 Ocaña FC. Todos los derechos reservados.</p>
-    </div>
-  </footer>
+    </footer>
   </main>
 </Layout>

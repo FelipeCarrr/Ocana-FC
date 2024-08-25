@@ -2,187 +2,461 @@
 const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="icon" type="image/png" href="img/logo.png" />
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <style>
-        .menu-hidden {
-            transform: translateX(100%);
-        }
+      /* Fondo del Navbar */
+      nav {
+        background-color: #218116;
+        padding: 16px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-        .menu-visible {
-            transform: translateX(0);
-        }
+      /* Estilo del texto del Navbar */
+      nav a {
+        color: #ecf0f1;
+        font-size: 18px;
+        font-weight: 600;
+        padding: 10px 15px;
+        text-transform: uppercase;
+        transition:
+          color 0.3s ease,
+          background-color 0.3s ease;
+      }
 
-        .transition-transform {
-            transition: transform 0.3s ease-in-out;
-        }
+      /* Efecto hover */
+      nav a:hover {
+        color: #2b8312;
+        background-color: #0e6103;
+        border-radius: 4px;
+      }
 
-        .submenu {
-            display: none;
-            position: absolute;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
+      /* Logo */
+      nav img {
+        height: 50px;
+        width: 50px;
+      }
+      .menu-hidden {
+        transform: translateX(100%);
+      }
+
+      .menu-visible {
+        transform: translateX(0);
+      }
+
+      .transition-transform {
+        transition: transform 0.3s ease-in-out;
+      }
+
+      /* Submenú */
+      .submenu {
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        z-index: 1000;
+      }
+
+      .submenu a {
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        color: #000;
+        display: flex;
+        align-items: center;
+      }
+
+      .submenu a:hover {
+        background-color: #ececec;
+      }
+
+      .submenu a i {
+        margin-right: 8px;
+        font-size: 1rem;
+      }
+      .submenu-visible {
+        display: block;
+      }
+      /* Botón de cierre en menú móvil */
+      .close-menu-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #fff;
+      }
+
+      /* Media Queries para adaptabilidad */
+      @media (max-width: 768px) {
+        .navbar a {
+          padding: 6px 10px;
+          margin-right: 10px;
         }
 
         .submenu a {
-            display: block;
-            padding: 8px 16px;
-            color: #000;
-            text-decoration: none;
+          padding: 8px 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .navbar a {
+          padding: 4px 8px;
+          margin-right: 8px;
         }
 
-        .submenu a:hover {
-            background-color: #f1f1f1;
+        .submenu a {
+          padding: 6px 12px;
         }
+      }
 
-        .relative {
-            position: relative;
-        }
+      /* Redes sociales flotantes */
+      .scrolling-social-icons {
+        position: fixed;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: transform 0.3s ease;
+      }
 
-        .submenu-visible {
-            display: block;
-        }
+      .social-icon {
+        width: 50px;
+        height: 50px;
+      }
 
-        .social-icons a {
-            margin-left: 1rem;
-            color: #d1d1d1;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
+      .social-icon img {
+        width: 100%;
+        height: 100%;
+      }
 
-        .social-icons a:hover {
-            color: #ffffff;
-        }
+      .social-icon:hover img {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+      }
+
+      .whatsapp-icon {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 9999;
+        width: 60px;
+        height: 60px;
+      }
+
+      .whatsapp-icon img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .whatsapp-icon:hover img {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+      }
+      /* Movimiento al hacer scroll */
+      .scrolling-social-icons {
+        position: fixed;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 9999;
+      }
+      /* Estilos para el botón del menú móvil */
+      #menuButton {
+        margin-right: 16px;
+        padding: 8px;
+        font-size: 24px;
+        color: white;
+      }
+      /* Estilos para el menú móvil */
+      #menuListMobile {
+        background-color: #218116ff;
+        color: #ecf0f1;
+        padding: 20px;
+        font-size: 18px;
+        border-radius: 8px;
+      }
+
+      #menuListMobile li a {
+        display: block;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        transition:
+          background-color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      #menuListMobile li a:hover {
+        background-color: #0e6103;
+        transform: translateX(5px);
+      }
+
+      /* Submenú en versión móvil */
+      #normatividadSubmenuMobile {
+        background-color: #0e6103;
+        border-left: 3px solid #ecf0f1;
+        padding-left: 12px;
+      }
+
+      #normatividadSubmenuMobile li a {
+        padding: 10px 14px;
+        margin-bottom: 6px;
+      }
+
+      #normatividadSubmenuMobile li a:hover {
+        background-color: #1abc9c;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gray-100">
+  <body class="bg-gray-100">
     <nav class="text-white py-4 bg-primary">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="/img/logo.png" alt="Escudo del equipo" class="h-12 w-12 mr-2">
-                <a href="/" class="text-lg font-bold mr-4">Ocaña FC</a>
-                <ul id="menuList" class="hidden md:flex space-x-4">
-                    <li><a href="/" class="hover:text-gray-300">Inicio</a></li>
-                    <li><a href="/equipos" class="hover:text-gray-300">Equipos</a></li>
-                    <li><a href="/noticias" class="hover:text-gray-300">Noticias</a></li>
-                    <li><a href="/galeria" class="hover:text-gray-300">Galería</a></li>
-                    <li><a href="/contacto" class="hover:text-gray-300">Contacto</a></li>
-                    <li><a href="/staff" class="hover:text-gray-300">Staff</a></li>
-                    <li><a href="/nosotros" class="hover:text-gray-300">Quienes Somos</a></li>
-                    <!-- Normatividad con Submenú -->
-                    <li class="relative">
-                        <a href="#" class="hover:text-gray-300" id="normatividadButton">Normatividad</a>
-                        <ul class="submenu absolute bg-white text-black shadow-lg p-2" id="normatividadSubmenu">
-                            <li><a href="/calendario" class="hover:bg-gray-200">Cumpleaños</a></li>
-                            <li><a href="/circulares" class="hover:bg-gray-200">Circulares</a></li>
-                            <li><a href="/normatividad/item3" class="hover:bg-gray-200">Item 3</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="flex items-center">
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/OcanaFC2021" class="hover:text-white"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com/ocana.fc?igsh=MXFxdHkwNTk1Mm83dQ==" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-                </div>
-                <!-- Botón de menú -->
-                <button id="menuButton" class="md:hidden ml-4">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+          <img
+            src="/img/logo.png"
+            alt="Escudo del equipo"
+            class="h-12 w-12 mr-2"
+          />
+          <a href="/" class="text-lg font-bold mr-4">Ocaña FC</a>
+          <ul id="menuList" class="hidden md:flex space-x-4">
+            <li><a href="/" class="hover:text-gray-300">Inicio</a></li>
+            <li><a href="/equipos" class="hover:text-gray-300">Equipos</a></li>
+            <li>
+              <a href="/noticias" class="hover:text-gray-300">Noticias</a>
+            </li>
+            <li><a href="/galeria" class="hover:text-gray-300">Galería</a></li>
+            <li>
+              <a href="/contacto" class="hover:text-gray-300">Contacto</a>
+            </li>
+            <li><a href="/staff" class="hover:text-gray-300">Staff</a></li>
+            <li>
+              <a href="/nosotros" class="hover:text-gray-300">Quienes Somos</a>
+            </li>
+            <!-- Normatividad con Submenú -->
+            <li class="relative">
+              <a href="#" class="hover:text-gray-300" id="normatividadButton"
+                >Normatividad</a
+              >
+              <ul
+                class="submenu absolute bg-white text-black shadow-lg p-2"
+                id="normatividadSubmenu"
+              >
+                <li>
+                  <a href="/calendario" class="hover:bg-gray-200"
+                    ><i class="fas fa-calendar-alt"></i>Cumpleaños</a
+                  >
+                </li>
+                <li>
+                  <a href="/circulares" class="hover:bg-gray-200">
+                    <i class="fas fa-envelope-open-text"></i>Circulares</a
+                  >
+                </li>
+                <li>
+                  <a href="/normatividad/item3" class="hover:bg-gray-200">
+                    <i class="fas fa-file-alt"></i>Item 3</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
+        <div class="flex items-center">
+          <!-- Botón de menú -->
+          <button id="menuButton" class="md:hidden ml-4">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
     </nav>
-    <ul id="menuListMobile" class="fixed top-0 right-0 w-64 bg-white shadow-lg p-4 transform transition-transform duration-300 menu-hidden z-50">
-        <li><a href="/" class="block py-2">Inicio</a></li>
-        <li><a href="/equipos" class="block py-2">Equipos</a></li>
-        <li><a href="/noticias" class="block py-2">Noticias</a></li>
-        <li><a href="/galeria" class="block py-2">Galería</a></li>
-        <li><a href="/contacto" class="block py-2">Contacto</a></li>
-        <li><a href="/staff" class="block py-2">Staff</a></li>
-        <li><a href="/nosotros" class="block py-2">Quienes Somos</a></li>
-        <li class="relative">
-            <a href="#" class="block py-2" id="normatividadButtonMobile">Normatividad</a>
-            <ul class="submenu bg-white text-black shadow-lg p-2" id="normatividadSubmenuMobile">
-                <li><a href="/calendario" class="hover:bg-gray-200">Cumpleaños</a></li>
-                <li><a href="/circulares" class="hover:bg-gray-200">Circulares</a></li>
-                <li><a href="/normatividad/item3" class="hover:bg-gray-200">Item 3</a></li>
-                <!-- Aquí puedes añadir más items si es necesario -->
-            </ul>
-        </li>
+    <!-- Redes sociales flotantes -->
+    <div class="scrolling-social-icons">
+      <div class="social-icon">
+        <a href="https://www.facebook.com/OcanaFC2021" target="_blank">
+          <img src="img/default_facebook.png" alt="Facebook" title="Facebook" />
+        </a>
+      </div>
+      <div class="social-icon">
+        <a href="https://www.instagram.com/ocana.fc" target="_blank">
+          <img
+            src="img/default_instagram.png"
+            alt="Instagram"
+            title="Instagram"
+          />
+        </a>
+      </div>
+    </div>
+    <div class="whatsapp-icon">
+      <a href="https://wa.me/1234567890" target="_blank">
+        <img src="img/default_whatsapp.png" alt="WhatsApp" title="WhatsApp" />
+      </a>
+    </div>
+
+    <!-- Menú Movil -->
+    <ul
+      id="menuListMobile"
+      class="fixed top-0 right-0 w-64 bg-white shadow-lg p-4 transform transition-transform duration-300 menu-hidden z-50"
+    >
+      <li><a href="/" class="block py-2">Inicio</a></li>
+      <li><a href="/equipos" class="block py-2">Equipos</a></li>
+      <li><a href="/noticias" class="block py-2">Noticias</a></li>
+      <li><a href="/galeria" class="block py-2">Galería</a></li>
+      <li><a href="/contacto" class="block py-2">Contacto</a></li>
+      <li><a href="/staff" class="block py-2">Staff</a></li>
+      <li><a href="/nosotros" class="block py-2">Quienes Somos</a></li>
+      <li class="relative">
+        <a href="#" class="block py-2" id="normatividadButtonMobile"
+          >Normatividad</a
+        >
+        <ul
+          class="submenu bg-white text-black shadow-lg p-2"
+          id="normatividadSubmenuMobile"
+        >
+          <li>
+            <a href="/calendario" class="hover:bg-gray-200">
+              <i class="fas fa-calendar-alt"></i> Cumpleaños</a
+            >
+          </li>
+          <li>
+            <a href="/circulares" class="hover:bg-gray-200">
+              <i class="fas fa-envelope-open-text"></i> Circulares</a
+            >
+          </li>
+          <li>
+            <a href="/normatividad/item3" class="hover:bg-gray-200">
+              <i class="fas fa-file-alt"></i> Item 3</a
+            >
+          </li>
+        </ul>
+      </li>
     </ul>
     <slot />
     <script>
-        // JavaScript para manejar el menú y submenú
-        document.getElementById('menuButton').addEventListener('click', function (event) {
-            event.stopPropagation();
-            const menuListMobile = document.getElementById('menuListMobile');
-            if (menuListMobile.classList.contains('menu-hidden')) {
-                menuListMobile.classList.remove('menu-hidden');
-                menuListMobile.classList.add('menu-visible');
-            } else {
-                menuListMobile.classList.remove('menu-visible');
-                menuListMobile.classList.add('menu-hidden');
-            }
+      // JavaScript para manejar el menú y submenú
+      document
+        .getElementById("menuButton")
+        .addEventListener("click", function (event) {
+          event.stopPropagation();
+          const menuListMobile = document.getElementById("menuListMobile");
+          if (menuListMobile.classList.contains("menu-hidden")) {
+            menuListMobile.classList.remove("menu-hidden");
+            menuListMobile.classList.add("menu-visible");
+          } else {
+            menuListMobile.classList.remove("menu-visible");
+            menuListMobile.classList.add("menu-hidden");
+          }
         });
 
-        // Cerrar el menú si se hace clic fuera de él
-        document.addEventListener('click', function (event) {
-            const menuListMobile = document.getElementById('menuListMobile');
-            const menuButton = document.getElementById('menuButton');
-            const target = event.target as Node;
-            if (!menuListMobile.contains(target) && !menuButton.contains(target)) {
-                if (menuListMobile.classList.contains('menu-visible')) {
-                    menuListMobile.classList.remove('menu-visible');
-                    menuListMobile.classList.add('menu-hidden');
-                }
-            }
-        });
+      // Cerrar el menú si se hace clic fuera de él
+      document.addEventListener("click", function (event) {
+        const menuListMobile = document.getElementById("menuListMobile");
+        const menuButton = document.getElementById("menuButton");
+        const target = event.target as Node;
+        if (!menuListMobile.contains(target) && !menuButton.contains(target)) {
+          if (menuListMobile.classList.contains("menu-visible")) {
+            menuListMobile.classList.remove("menu-visible");
+            menuListMobile.classList.add("menu-hidden");
+          }
+        }
+      });
 
-        // Manejo del submenú Normatividad en versión de escritorio
-        const normatividadButton = document.getElementById('normatividadButton');
-        const normatividadSubmenu = document.getElementById('normatividadSubmenu');
-        normatividadButton.addEventListener('click', function (event) {
-            event.stopPropagation();
-            normatividadSubmenu.classList.toggle('submenu-visible');
-        });
+      // Manejo del submenú Normatividad en versión de escritorio
+      const normatividadButton = document.getElementById("normatividadButton");
+      const normatividadSubmenu = document.getElementById(
+        "normatividadSubmenu"
+      );
+      normatividadButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        normatividadSubmenu.classList.toggle("submenu-visible");
+      });
 
-        // Cerrar el submenú si se hace clic fuera de él
-        document.addEventListener('click', function (event) {
-            const target = event.target as Node;
-            if (!normatividadButton.contains(target)) {
-                normatividadSubmenu.classList.remove('submenu-visible');
-            }
-        });
+      // Cerrar el submenú si se hace clic fuera de él
+      document.addEventListener("click", function (event) {
+        const target = event.target as Node;
+        if (!normatividadButton.contains(target)) {
+          normatividadSubmenu.classList.remove("submenu-visible");
+        }
+      });
 
-        // Manejo del submenú Normatividad en versión móvil
-        const normatividadButtonMobile = document.getElementById('normatividadButtonMobile');
-        const normatividadSubmenuMobile = document.getElementById('normatividadSubmenuMobile');
-        normatividadButtonMobile.addEventListener('click', function (event) {
-            event.stopPropagation();
-            normatividadSubmenuMobile.classList.toggle('submenu-visible');
-        });
+      // Manejo del submenú Normatividad en versión móvil
+      const normatividadButtonMobile = document.getElementById(
+        "normatividadButtonMobile"
+      );
+      const normatividadSubmenuMobile = document.getElementById(
+        "normatividadSubmenuMobile"
+      );
+      normatividadButtonMobile.addEventListener("click", function (event) {
+        event.stopPropagation();
+        normatividadSubmenuMobile.classList.toggle("submenu-visible");
+      });
 
-        // Cerrar el submenú si se hace clic fuera de él en versión móvil
-        document.addEventListener('click', function (event) {
-            const target = event.target as Node;
-            if (!normatividadButtonMobile.contains(target)) {
-                normatividadSubmenuMobile.classList.remove('submenu-visible');
-            }
-        });
+      // Cerrar el submenú si se hace clic fuera de él en versión móvil
+      document.addEventListener("click", function (event) {
+        const target = event.target as Node;
+        if (!normatividadButtonMobile.contains(target)) {
+          normatividadSubmenuMobile.classList.remove("submenu-visible");
+        }
+      });
+      let isReturning = false;
+
+      function handleScroll() {
+        if (isReturning) return;
+
+        const icons = document.querySelector(
+          ".scrolling-social-icons"
+        ) as HTMLElement;
+        const whatsappIcon = document.querySelector(
+          ".whatsapp-icon"
+        ) as HTMLElement;
+        const whatsappRect = whatsappIcon.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        let scrollY = window.scrollY || document.documentElement.scrollTop;
+        let iconTop = scrollY + windowHeight / 2;
+
+        const maxIconTop = whatsappRect.top - icons.clientHeight;
+
+        if (iconTop + icons.clientHeight / 2 > maxIconTop) {
+          isReturning = true;
+          icons.style.transition = "top 0.5s ease";
+          icons.style.top = `${maxIconTop}px`;
+          setTimeout(() => {
+            icons.style.transition = "top 0.5s ease";
+            icons.style.top = "50%";
+            setTimeout(() => {
+              isReturning = false;
+            }, 500);
+          }, 500);
+        } else if (iconTop - icons.clientHeight / 2 < 0) {
+          iconTop = icons.clientHeight / 2;
+        } else {
+          icons.style.top = `${iconTop}px`;
+        }
+      }
+
+      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("resize", handleScroll);
+      window.addEventListener("load", handleScroll);
     </script>
-</body>
-
+  </body>
 </html>
